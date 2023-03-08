@@ -1,0 +1,12 @@
+<div class="quick-search {{ isLarge ? 'quick-search--large' }}">
+    <form role="search" method="get" id="{{ id|default('quick-search') }}-form" class="quick-search__form" action="{{site.link}}">
+        <input id="{{ id|default('quick-search') }}-input" name="s" type="text" placeholder="Search" class="quick-search__input {{ isLarge ? 'quick-search__input--large' }}">
+        <label for="{{ id|default('quick-search') }}-input" class="quick-search__input-label">
+            Search the website
+        </label>
+        <div class="quick-search__icon">
+            {% include 'bits/icons/search.twig' %}
+        </div>
+        <input aria-label="submit search query" class="quick-search__submit" type="submit" id="{{ id|default('quick-search') }}-submit" value="Search" />
+    </form>
+</div>

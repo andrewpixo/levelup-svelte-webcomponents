@@ -1,0 +1,49 @@
+<nav class="pager" aria-label="Pagination">
+    <div class="pager__prev-container">
+    {%  if pagination.prev.link|length %}
+        <a href="{{pagination.prev.link}}" class="pager__prev" aria-label="previous page">
+            <span class="pager__prev-icon">
+                {% include 'bits/icons/left-chevron.twig' %}
+            </span>
+            Previous
+        </a>
+    {% else %}
+        <div class="pager__prev pager__prev--inactive" aria-hidden="true">
+            <span class="pager__prev-icon">
+            {% include 'bits/icons/left-chevron.twig' %}
+            </span>
+            Previous
+        </div>
+    {% endif %}
+    </div>
+    <ul class="pager__pages">
+        {% for page in pagination.pages %}
+            <li class="pager__page">
+                {% if not page.current and not page.link %}
+                    <span class="pager__page-ellipses">{{page.title}}</span>
+                {% elseif not page.current %}
+                    <a href="{{page.link}}" class="pager__page-link">{{page.title}}</a>
+                {% else %}
+                    <span class="pager__page-current">{{page.title}}</span>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+    <div class="pager__next-container">
+    {%  if pagination.next.link|length %}
+    <a href="{{pagination.next.link}}" class="pager__next" aria-label="next page">
+        Next
+        <span class="pager__next-icon">
+            {% include 'bits/icons/right-chevron.twig' %}
+        </span>
+    </a>
+    {% else %}
+        <div class="pager__next pager__next--inactive" aria-hidden="true">
+            Next
+            <span class="pager__next-icon">
+            {% include 'bits/icons/right-chevron.twig' %}
+            </span>
+        </div>
+    {% endif %}
+    </div>
+</nav>

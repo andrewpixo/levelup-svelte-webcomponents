@@ -1,0 +1,56 @@
+{% set width = cropWidth ?: image.naturalWidth %}
+{% set height = cropHeight ?: getNewHeightBasedOnAspectRatio(image.naturalWidth, image.naturalHeight, width) %}
+{% set dimensions = getDimensions(width, height) %}
+
+{% macro createSrcSet(image, dimensions, mimeType) %}
+    <source
+        srcset="
+            {% for dimension in dimensions %}
+                {% if image.mimeType == 'image/jpeg' %}
+                    {{ image.src | resize(dimension.width, dimension.height) | towebp }} {{ dimension.width }}w{{ loop.last ? '' : ',' }}
+                {% elseif image.mimeType == 'image/webp' %}
+                    {{ image.src | resize(dimension.width, dimension.height) | tojpg }} {{ dimension.width }}w{{ loop.last ? '' : ',' }}
+                {% endif %}
+            {% endfor %}
+        "
+        sizes="
+            {% for dimension in dimensions %}
+                (min-width: {{ dimension.width }}px) {{ loop.first ? image.naturalWidth~'px' : dimensions[loop.index0 - 1].width~'px' }},
+            {% endfor %}
+            {{ dimensions[dimensions|length - 1].width }}px
+        "
+        type="{{ mimeType }}"
+    >
+{% endmacro %}
+
+<figure class="image image--{{ background }} {{ image.caption and not hideCaption ? 'image--with-caption' : '' }}">
+    <picture class="image__picture">
+        {% if noFormatting %}
+            <source srcset="{{ image.src | towebp }}" type="image/webp">
+            <source srcset="{{ image.src | tojpg }}" type="image/jpeg">
+        {% elseif not cropWidth|default and not noFormatting %}
+            {{ _self.createSrcSet(image, dimensions, 'image/webp') }}
+            {{ _self.createSrcSet(image, dimensions, 'image/jpeg') }}
+        {% else %}
+            <source srcset="{{ image.src | resize(width, height) | towebp }}" type="image/webp">
+            <source srcset="{{ image.src | resize(width, height) | tojpg }}" type="image/jpeg">
+        {% endif %}
+        <img
+            class="image__image"
+            loading="lazy"
+            type="image/jpeg"
+            {% if cropWidth|default %}
+                src="{{ image.src | resize(width, height) | tojpg }}"
+            {% else %}
+                src="{{ image.src | tojpg }}"
+            {% endif %}
+            alt="{{ image.altText ?: '' }}"
+            height="{{ height }}"
+            width="{{ width }}">
+    </picture>
+    {% if image.caption and not hideCaption %}
+        <figcaption class="image__caption image__caption--{{ background }}">
+            {{ image.caption }}
+        </figcaption>
+    {% endif %}
+</figure>

@@ -1,0 +1,24 @@
+<div class="listing-content">
+    <div class="listing-content__content">
+        <div class="listing-content__wrapper {{ (sidebar|default) ? 'listing-content__wrapper--sidebar' : 'listing-content__wrapper--no-sidebar' }}">
+            {% if sidebar %}
+                <div class="listing-content__sidebar">
+                    {% block sidebar %}
+                    {% endblock %}
+                </div>
+            {% endif %}
+            <div class="listing-content__list">
+                {% block content %}
+                    <p>No content found.</p>
+                {% endblock %}
+                {% if pagination %}
+                    <div class="listing-content__pager">
+                        {% if pagination.pages %}
+                            {% include 'partials/navigation/pager/pager.twig' %}
+                        {% endif %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>

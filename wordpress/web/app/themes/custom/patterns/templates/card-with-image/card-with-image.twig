@@ -1,0 +1,10 @@
+<article class="card-with-image">
+    <div class="card-with-image__content">
+        {% block text %}{% endblock %}
+    </div>
+    {% if post.featuredImage %}
+    <div class="card-with-image__image">
+        {% block image %}{% endblock %}
+    </div>
+    {% endif %}
+</article>

@@ -1,0 +1,160 @@
+breakpoint = 700px
+
+.pager
+    --buttonBackgroundColor transparent
+    --buttonBackgroundColorFocused charcoal
+    --buttonBackgroundColorDisabled transparent
+    --buttonBorderColor charcoal
+    --buttonBorderColorFocused charcoal
+    --buttonBorderColorDisabled grey
+    --buttonTextColor charcoalLight
+    --buttonTextColorFocused white
+    --buttonTextColorDisabled grey
+    --buttonIconColor illiniOrange
+    --buttonIconColorFocused white
+    --buttonIconColorDisabled grey
+    --pageBackgroundColor cloud
+    --pageBackgroundColorFocused charcoal
+    --pageBorderColor charcoal
+    --pageBorderColorFocused charcoal
+    --pageTextColor charcoal
+    --pageTextColorFocused white
+    --currentBackgroundColor charcoal
+    --currentBorderColor charcoal
+    --currentTextColor white
+    --ellipsisColor charcoal
+
+    color charcoal
+    font-size 20px
+    margin-top 48px
+    display flex
+    justify-content space-around
+
+    +below(breakpoint)
+        flex-wrap wrap
+
+    &__prev-container
+    &__next-container
+        margin-bottom 16px
+        flex-shrink 0
+
+        +below(breakpoint)
+            order 1
+
+    &__page-current
+        background-color var(--currentBackgroundColor)
+        color var(--currentTextColor)
+
+    &__page-link
+        background-color var(--pageBackgroundColor)
+        color var(--pageTextColor)
+
+    &__page-link
+        border 2px solid var(--pageBorderColor)
+
+    &__page-link
+    &__page-current
+        padding 0 8px
+
+    &__page-ellipses
+        color var(--ellipsisColor)
+
+    &__prev
+    &__next
+    &__page-link
+    &__page-current
+        border-radius 8px
+        display flex
+        justify-content center
+        line-height 2em
+        min-width 2.2em
+
+    &__prev
+    &__next
+    &__page-current
+        border 2px solid var(--buttonBorderColor)
+
+    a&__prev
+    a&__next
+    a&__page-link
+        text-decoration none
+        transition all 0.3s
+
+        &:active
+        &:focus
+        &:hover
+            background-color var(--pageBackgroundColorFocused)
+            border 2px solid var(--pageBorderColorFocused)
+            color var(--pageTextColorFocused)
+
+    &__prev
+    &__next
+        padding 0 20px
+
+        &-icon
+            display inline-block
+            transition all 0.3s
+            transform translate(0, 2px)
+
+    a&__prev
+    a&__next
+        background-color var(--buttonBackgroundColor)
+        color var(--buttonTextColor)
+
+        & ._mark
+            fill var(--buttonIconColor)
+
+        &:active
+        &:focus
+        &:hover
+            background-color var(--buttonBackgroundColorFocused)
+            color var(--buttonTextColorFocused)
+
+            & .pager__next-icon
+            & .pager__prev-icon
+                & ._mark
+                    fill var(--buttonIconColorFocused)
+    &__next
+        &-icon
+            margin-left 8px
+
+    a&__next
+        &:active
+        &:focus
+        &:hover
+            & .pager__next-icon
+                transform translate(4px, 2px)
+    &__prev
+        &-icon
+            margin-right 8px
+
+    a&__prev
+        &:active
+        &:focus
+        &:hover
+            & .pager__prev-icon
+                transform translate(-4px, 2px)
+
+    &__prev--inactive
+    &__next--inactive
+        background-color var(--buttonBackgroundColorDisabled)
+        border-color var(--buttonBorderColorDisabled)
+        color var(--buttonTextColorDisabled)
+
+        & ._mark
+            fill var(--buttonIconColorDisabled)
+
+    &__pages
+        display flex
+        flex-wrap wrap
+        justify-content center
+
+        +above(breakpoint)
+            flex-grow 1
+
+        +below(breakpoint)
+            justify-content center
+            width 100%
+
+    &__page
+        margin 0 8px 16px 8px

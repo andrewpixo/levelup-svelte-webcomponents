@@ -1,0 +1,49 @@
+<div class="link-list">
+    <div class="link-list__introduction">
+        <h2 class="link-list__heading {{ component.hideHeader ? 'link-list__heading--is-hidden' : '' }}">
+            {{ component.header }}
+        </h2>
+        {% if component.description %}
+            <div class="link-list__description">
+                {{ component.description }}
+            </div>
+        {% endif %}
+    </div>
+    <ul class="link-list__topic-group">
+        {% for list in component.linkLists %}
+        <li class="link-list__topic">
+            <h3 class='link-list__topic-heading'>
+                {{ list.heading }}
+            </h3>
+            <ul class="link-list__topic-links">
+                {% for link in list.links %}
+                <li class="link-list__topic-link">
+                   <a
+                       class="link-list__link"
+                       href="{{ link.url }}"
+                       {% if link.type == 'file_link' %}
+                            aria-label="Download {{ link.text }} {{ link.fileType }} file ({{ link.fileSize }})"
+                       {% endif %}
+                   >
+                       <div class="link-list__link-text">
+                           {{ link.text }}
+                       </div>
+                       <div class="link-list__link-icon">
+                           {% if link.type == 'page_link' %}
+                               {% include "bits/icons/right-chevron.twig" %}
+                           {% endif %}
+                           {% if link.type == 'external_link' %}
+                               {% include "bits/icons/external-link.twig" %}
+                           {% endif %}
+                           {% if link.type == 'file_link' %}
+                               {% include "bits/icons/down.twig" %}
+                           {% endif %}
+                       </div>
+                   </a>
+                </li>
+            {% endfor %}
+            </ul>
+        </li>
+        {% endfor %}
+    </ul>
+</div>

@@ -1,0 +1,30 @@
+.featured-news
+    --dateColor grayDarkest
+    --summaryColor grayDarkest
+    --textColor charcoal
+
+    &--dark
+        --dateColor gray
+        --summaryColor gray
+        --textColor white
+
+    &__image
+        margin-bottom 24px
+
+    &__title
+        margin-bottom 8px
+        margin-top 32px
+
+        a
+            @extends $headline2
+            color var(--textColor)
+
+    &__date
+        @extends $labelSmall
+        color var(--dateColor)
+        margin-bottom 16px
+
+    &__summary
+        @extends $richText
+        @extends $bodyLarge
+        color var(--summaryColor)

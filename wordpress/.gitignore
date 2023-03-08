@@ -1,0 +1,53 @@
+# Application
+web/app/plugins/*
+!web/app/plugins/.gitkeep
+web/app/mu-plugins/*
+!web/app/mu-plugins/.gitkeep
+web/app/upgrade
+web/app/uploads/*
+!web/app/uploads/.gitkeep
+web/app/cache/
+
+# WordPress
+web/wp
+web/.htaccess
+
+# Logs
+*.log
+
+# Dotenv
+/.env
+
+# Composer
+/vendor
+vendor
+
+# Node/NPM
+node_modules
+dist
+
+# Fractal
+web/app/themes/custom/build
+
+# WP-CLI
+wp-cli.local.yml
+
+# Local environment
+/docker-compose.yml
+/.mysql
+
+# Jetbrains metadata
+.idea
+
+# Other
+*.sql
+*.gz
+*.swp
+*.cache
+*.DS_Store
+
+# Caching
+web/app/advanced-cache.php
+web/app/db.php
+web/app/wp-cache-config.php
+

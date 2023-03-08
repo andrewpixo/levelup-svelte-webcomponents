@@ -1,0 +1,20 @@
+$contentContainer
+    padding-left contentPaddingSmall
+    padding-right contentPaddingSmall
+    +above(500px)
+        padding-left contentPaddingLarge
+        padding-right contentPaddingLarge
+        max-width maxContentWidth + contentPaddingLarge + contentPaddingLarge
+        margin auto
+
+$contentContainerInterior
+    padding-left contentPaddingSmall
+    padding-right contentPaddingSmall
+    +above(500px)
+        padding-left contentPaddingLarge
+        padding-right contentPaddingLarge
+        max-width maxContentWidthInterior + contentPaddingLarge + contentPaddingLarge
+        margin auto
+
+$componentWithMargin
+    fluid('margin-top', 80px, 112px)

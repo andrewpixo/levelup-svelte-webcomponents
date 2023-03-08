@@ -1,0 +1,35 @@
+<div class="link-cards">
+    <div class="link-cards__introduction">
+        <h2 class="link-cards__heading {{ component.hideHeader ? 'link-cards__heading--is-hidden' : '' }}">
+            {{ component.header }}
+        </h2>
+        {% if component.description %}
+            <div class="link-cards__description">
+                {{ component.description }}
+            </div>
+        {% endif %}
+    </div>
+    <ul class="link-cards__cards">
+        {% for card in component.linkCards %}
+            <li class="link-cards__card">
+                <div class="link-cards__image-wrapper">
+                    <picture class="link-cards__picture">
+                        <source srcset="{{ card.image.url | resize(432, 272) | towebp }}" type="image/webp">
+                        <source srcset="{{ card.image.url | resize(432, 272) | tojpg }}" type="image/jpeg">
+                        <img class="link-cards__image" src="{{ card.image.url }}" width="432"  height="272" alt='{{ card.altText }}'/>
+                    </picture>
+                </div>
+                <div class="link-cards__card-text">
+                    <h3 class='link-cards__card-heading'>
+                        <a class="link-cards__link" href="{{ card.link.url }}">
+                            {{ card.link.text }}
+                        </a>
+                    </h3>
+                    <div class="link-cards__card-description">
+                        {{ card.description }}
+                    </div>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+</div>

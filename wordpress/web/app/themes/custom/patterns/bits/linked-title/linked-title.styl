@@ -1,0 +1,32 @@
+.linked-title
+    --iconFillColor charcoal
+    --textColor charcoal
+    --textColorActive charcoal
+
+    &--dark
+        --iconFillColor white
+        --textColor white
+        --textColorActive white
+
+    &__link
+        color var(--textColor)
+        text-decoration none
+
+        &:focus
+        &:hover
+        &:active
+            color var(--textColorActive)
+
+            .linked-title__link-icon svg
+                transform translate(4px, 0)
+
+    &__link-icon
+        display inline
+        white-space nowrap
+
+        & svg
+            transition all 0.3s
+
+            & .right-chevron__shape
+                fill var(--iconFillColor)
+

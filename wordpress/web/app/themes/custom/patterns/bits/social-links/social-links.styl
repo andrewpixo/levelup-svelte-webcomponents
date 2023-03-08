@@ -1,0 +1,63 @@
+.social-links
+    --backgroundColor charcoal
+    --backgroundColorActive charcoal
+    --border 2px solid charcoal
+    --iconFillColor white
+    --iconFillColorActive white
+
+    display flex
+    flex-wrap wrap
+    margin-top 24px
+
+    &__item
+        margin-bottom 16px
+        margin-right 16px
+
+    &__item-link
+        background-color var(--backgroundColor)
+        border var(--border)
+        border-radius 50px
+        display flex
+        width 48px
+        height 48px
+        justify-content center
+        align-items center
+        transition all 0.3s
+
+        &:focus
+        &:hover
+        &:active
+            background-color var(--backgroundColorActive)
+            transform scale(1.2)
+
+        & .facebook__logo
+        & .flickr__logo
+        & .linkedin__logo
+        & .twitter__bird
+        & .instagram__camera
+        & .youtube__play-button
+            fill var(--iconFillColor)
+
+        &:focus .facebook__logo
+        &:focus .flickr__logo
+        &:focus .linkedin__logo
+        &:focus .twitter__bird
+        &:focus .instagram__camera
+        &:focus .youtube__play-button
+        &:hover .facebook__logo
+        &:hover .flickr__logo
+        &:hover .linkedin__logo
+        &:hover .twitter__bird
+        &:hover .instagram__camera
+        &:hover .youtube__play-button
+        &:active .facebook__logo
+        &:active .flickr__logo
+        &:active .linkedin__logo
+        &:active .twitter__bird
+        &:active .instagram__camera
+        &:active .youtube__play-button
+            fill var(--iconFillColorActive)
+
+    &__item-text
+        zoom 1
+        @extends $visually-hidden

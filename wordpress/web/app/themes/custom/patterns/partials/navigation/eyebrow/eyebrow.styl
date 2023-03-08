@@ -1,0 +1,31 @@
+.eyebrow-menu
+    --backgroundColor cloud
+    --itemFocusBackgroundColor charcoal
+    --itemFocusColor white
+    --itemTextColor grayDarkest
+
+    display none
+    flex-wrap wrap
+    justify-content flex-end
+    margin-left auto
+
+    +above(breakpointHeaderSmall)
+        display flex
+        margin-bottom 32px
+
+    &__item
+        margin-left 8px
+        margin-bottom 8px
+
+    &__item-link
+        @extends $eyebrowPill
+        background-color var(--backgroundColor)
+        color var(--itemTextColor)
+
+        &--is-active
+        &:focus
+        &:hover
+        &:active
+        &:focus-within
+            background-color var(--itemFocusBackgroundColor)
+            color var(--itemFocusColor)

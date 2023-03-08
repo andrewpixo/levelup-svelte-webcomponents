@@ -1,0 +1,309 @@
+//Future enhancements: add font-range, fluid line height
+extraBold = 800
+
+:root
+    --unorderedListBulletColor charcoal
+    --orderedListNumberColor charcoal
+    --hypertextBackgroundColorActive transparent
+    --hypertextBorderBottomColor charcoal
+    --hypertextColor charcoal
+    --hypertextColorActive charcoal
+
+/*  --------- Title --------- */
+titleBase()
+    color black
+    font-family raleway
+    font-weight extraBold
+    line-height 1.2
+
+$titleBase
+    titleBase()
+
+$billboardTitle
+    @extends $titleBase
+    fluid(font-size, 40px, 96px)
+
+$primaryTitle
+    @extends $titleBase
+    fluid(font-size, 48px, 72px)
+
+$secondaryTitle
+    @extends $titleBase
+    fluid(font-size, 40px, 56px)
+
+tertiaryTitle()
+    @extends $titleBase
+    fluid(font-size, 32px, 48px)
+$tertiaryTitle
+    tertiaryTitle()
+
+/*  --------- Headline --------- */
+
+$headlineBase
+    color charcoal
+
+$headline1
+    @extends $headlineBase
+    font-family raleway
+    font-weight 800
+    fluid(font-size, 48px, 64px)
+
+headline2()
+    @extends $headlineBase
+    font-family raleway
+    font-size 32px
+    font-weight 800
+    line-height 1.25
+
+$headline2
+    headline2()
+
+headline3()
+    @extends $headlineBase
+    font-family sourceSansPro
+    font-size 24px
+    font-weight 700
+    line-height 1.3
+
+$headline3
+    headline3()
+
+headline4()
+    @extends $headlineBase
+    font-family raleway
+    font-size 24px
+    font-weight 700
+    letter-spacing 2px
+    line-height 1.3
+    text-transform uppercase
+
+$headline4
+    headline4()
+
+$headline5
+    @extends $headlineBase
+    font-family sourceSansPro
+    font-size 20px
+    font-weight 700
+    line-height 2
+
+headline6()
+    @extends $headlineBase
+    font-family sourceSansPro
+    font-size 16px
+    font-weight 700
+    line-height 1.5
+
+$headline6
+    headline6()
+
+/*  --------- Link headline --------- */
+
+$linkHeadlineBase
+    font-family sourceSansPro
+    font-weight 700
+
+linkHeadline3()
+    @extends $linkHeadlineBase
+    font-size 24px
+    line-height 1.33
+
+$linkHeadline3
+    linkHeadline3()
+
+linkHeadline5()
+    @extends $linkHeadlineBase
+    font-size 20px
+    line-height 1.4
+
+$linkHeadline5
+    linkHeadline5()
+
+linkHeadline6()
+    @extends $linkHeadlineBase
+    font-size 16px
+    line-height 1.5
+
+$linkHeadline6
+    linkHeadline6()
+
+
+/*  --------- Link --------- */
+
+$linkBase
+    @extends $titleBase
+    font-family sourceSansPro
+
+
+linkLarge()
+    @extends $linkBase
+    font-size 28px
+    font-weight 400
+
+$linkLarge
+    linkLarge()
+
+linkSmall()
+    @extends $linkBase
+    font-size 16px
+    font-weight 400
+    line-height 1.5
+
+$linkSmall
+    linkSmall()
+
+/*  --------- Body text --------- */
+
+$bodyBase
+    font-family sourceSansPro
+
+body()
+    @extends $bodyBase
+    font-size 20px
+    font-weight 400
+    line-height 1.5
+
+$body
+    body()
+
+bodyLarge()
+    @extends $bodyBase
+    font-size 24px
+
+$bodyLarge
+    bodyLarge()
+
+bodySmall()
+    @extends $bodyBase
+    font-size 16px
+
+$bodySmall
+    bodySmall()
+
+$secondaryParagraph
+    bodySmall()
+
+detail()
+    @extends $bodyBase
+    color greyDarkest
+$detail
+    detail()
+
+/*  --------- Label --------- */
+
+$labelBase
+    font-family raleway
+    font-weight 600
+    letter-spacing 2px
+    text-transform uppercase
+
+label()
+    @extends $labelBase
+    font-size 16px
+    line-height 1.5
+
+$label
+    label()
+
+labelSmall()
+    @extends $labelBase
+    font-size 14px
+    line-height 1.43
+
+$labelSmall
+    labelSmall()
+
+/*  --------- Rich text --------- */
+
+$headlineSpace
+    margin-bottom 0.5em
+    &:not(:first-child)
+        margin-top 1em
+
+$unorderedListBullet
+    content "\2022"
+    color var(--unorderedListBulletColor)
+    font-weight bold
+    display inline-block
+    width 1em
+    margin-left -1em
+
+$orderedListNumber
+    content counter(counter) ". "
+    color var(--orderedListNumberColor)
+    display inline-block
+    width 1em
+    margin-left -1em
+
+$hypertext
+    border-bottom 1px solid var(--hypertextBorderBottomColor)
+    color var(--hypertextColor)
+    cursor pointer
+    font-weight 500
+    text-decoration none
+    transition all 0.3s
+    &:focus
+    &:hover
+    &:active
+        background-color var(--hypertextBackgroundColorActive)
+        color var(--hypertextColorActive)
+
+    &--dark
+        color white
+
+$richText
+    & h2
+        @extends $headline2
+        margin-bottom 0.5em
+
+    & h3
+        @extends $headline3
+        @extends $headlineSpace
+
+    & h4
+        @extends $headline4
+        @extends $headlineSpace
+
+    & h5
+        @extends $headline5
+        @extends $headlineSpace
+
+    & h6
+        @extends $headline6
+        @extends $headlineSpace
+    & p
+    & ul
+    & ol
+        @extends $bodyBase
+        margin-bottom 1.2em
+    & ul
+        margin-left 1.5em
+        & > li
+            &::before
+                @extends $unorderedListBullet
+    & ol
+        counter-reset counter
+        margin-left 1.5em
+        & > li
+            counter-increment counter
+            &::before
+                @extends $orderedListNumber
+    & li
+        & > ul
+        & > ol
+            margin-bottom 0
+    & a
+        @extends $hypertext
+    & em
+        font-style italic
+    & strong
+        font-weight 600
+
+$eyebrowPill
+    @extends $secondaryParagraph
+    background-color cloud
+    border-radius 50px
+    display inline-block
+    padding 4px 12px
+    text-decoration none
+    transition all 0.3s

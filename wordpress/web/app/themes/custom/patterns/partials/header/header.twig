@@ -1,0 +1,17 @@
+<div class="header">
+    <div class="header__navigation">
+        <div class="header__eyebrow-navigation">
+            <div class="header__logo">
+                <a href="/"><img src="{{ siteLogo }}" alt="" class="header__logo-image"></a>
+            </div
+            {% include 'partials/navigation/eyebrow/eyebrow.twig' %}
+        </div>
+        <div class="header__main-navigation">
+            <div class="header__logo header__logo--mobile">
+                <a href="/"><img src="{{ siteLogo }}" alt="" class="header__logo-image"></a>
+            </div
+            {% include 'partials/navigation/main-navigation/main-navigation.twig' %}
+            {% include 'partials/navigation/small-main-navigation/small-main-navigation.twig' %}
+        </div>
+    </div>
+</div>

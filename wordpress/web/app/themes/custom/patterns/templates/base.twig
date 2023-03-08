@@ -1,0 +1,29 @@
+{% if is_wordpress %}
+    {% include 'partials/html-header/html-header.twig' %}
+{%  endif  %}
+
+<div class="page">
+
+    <header class="page__header" role="banner">
+        <a href="#content" class="page__skip-to-content">Skip to content</a>
+        {% include 'partials/header/header.twig' %}
+    </header>
+
+    <main class="page__content" id="content">
+        {% block header %}
+        {% endblock %}
+
+        {% block content %}
+            <p>Sorry, no content</p>
+        {% endblock %}
+        <div class="js-main-navigation-overlay main-navigation-overlay"></div>
+        <div class="js-small-main-navigation-overlay small-main-navigation-overlay"></div>
+    </main>
+
+    <footer class="page__footer" role="contentinfo">
+        {% include 'partials/footer/footer.twig' %}
+    </footer>
+</div>
+{% if is_wordpress %}
+    {% include 'partials/html-footer/html-footer.twig' %}
+{%  endif %}

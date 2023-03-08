@@ -1,0 +1,57 @@
+<div role="navigation" aria-label="Main Navigation" class="main-navigation">
+    <ul class="main-navigation__list">
+        {% for item in mainMenu.items %}
+        <li class="main-navigation__item">
+            <a
+                {{ item.children ? 'aria-expanded="false"' }}
+                class="
+                    {{ item.children ? 'js-mega-menu-toggle' }}
+                    main-navigation__item-link
+                    {{ item.isActive ? 'main-navigation__item-link--active' }}
+                    {{ item.isDescendantActive ? 'main-navigation__item-link--active-trail' }}
+                "
+                href="{{ item.url }}">{{ item.title }}
+                {% if item.children %}
+                <div class="main-navigation__item-link-icon-container">
+                    <div class="main-navigation__item-link-icon">
+                        {% include 'bits/icons/down-toggle.twig' %}
+                    </div>
+                </div>
+                {% endif %}
+            </a>
+            {% if item.children %}
+                <div class="main-navigation__children">
+                    <div data-active="false" class="mega-menu js-mega-menu">
+                        <div class="mega-menu__container">
+                            <div class="mega-menu__title">
+                                <div class="mega-menu__title-text">
+                                    <a href="{{ item.url }}" class="mega-menu__title-text-link">
+                                        {{ item.title }}
+                                        <span class="mega-menu__title-text-link-icon">
+                                            {% include 'bits/icons/down-toggle.twig' %}
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                            <ul class="mega-menu__list">
+                                {% for item in item.children %}
+                                    <li class="mega-menu__item">
+                                        <a
+                                            class="
+                                                mega-menu__item-link
+                                                {{ item.isActive ? 'mega-menu__item-link--active' }}
+                                                {{ item.isDescendantActive ? 'mega-menu__item-link--active-trail' }}
+                                            "
+                                            href="{{ item.url }}">{{ item.title }}
+                                        </a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+</div>

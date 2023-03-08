@@ -1,0 +1,35 @@
+<div class="basic-header">
+    <div class="basic-header__wrapper {{ (sidebar|default) ? 'basic-header__wrapper--sidebar' : 'basic-header__wrapper--no-sidebar' }}">
+        {% if sidebar %}
+            <div class="basic-header__sidebar">
+            </div>
+        {% endif %}
+        <div class="basic-header__content">
+            {% if breadcrumbs %}
+                <div class="basic-header__breadcrumbs">
+                    {% include "partials/navigation/breadcrumbs/breadcrumbs.twig" with {
+                        background: 'dark'
+                    }%}
+                </div>
+            {% endif %}
+            <h1 class="basic-header__title">
+                {{ post.title }}
+            </h1>
+            {% if post.introText %}
+                <div class="basic-header__intro-text">
+                    {{ post.introText }}
+                </div>
+            {% endif %}
+            {% if post.addImage and post.featuredImage %}
+                <div class="basic-header__featured-image">
+                    {% include 'partials/image/image.twig' with {
+                        image: post.featuredImage,
+                        cropWidth: 880,
+                        cropHeight: 560,
+                        background: 'dark',
+                    } %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>

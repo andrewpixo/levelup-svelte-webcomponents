@@ -1,0 +1,39 @@
+.header
+    display flex
+    padding 16px 24px
+    position relative
+
+    +above(breakpointHeaderSmall)
+        padding-top 32px
+        padding-bottom 24px
+        padding-left 32px
+        padding-right 32px
+
+    +above(breakpointHeaderLarge)
+        @extends $contentContainer
+        padding 32px 48px
+
+    &__navigation
+        display flex
+        flex 1
+        flex-direction column
+        justify-content flex-end
+
+        +above(breakpointHeaderMedium)
+            justify-content space-between
+
+    &__eyebrow-navigation
+        display flex
+        justify-content space-between
+
+    &__main-navigation
+        display flex
+
+    &__logo
+        display none
+        +above(breakpointHeaderLarge)
+            display block
+        &--mobile
+            display block
+            +above(breakpointHeaderLarge)
+                display none

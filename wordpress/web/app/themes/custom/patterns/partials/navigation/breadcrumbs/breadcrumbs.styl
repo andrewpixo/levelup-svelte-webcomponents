@@ -1,0 +1,43 @@
+.breadcrumbs
+    --borderColor charcoal
+    --currentItemColor grayDarkest
+    --iconColor smokeDarkest
+    --textColor charcoal
+
+    &--dark
+        --borderColor white
+        --currentItemColor gray
+        --iconColor grayDarkest
+        --textColor white
+
+    &__list
+        display flex
+        flex-wrap wrap
+
+    &__item
+        margin-right 8px
+
+    &__item-link
+        @extends $linkSmall
+        border-bottom 1px solid var(--borderColor)
+        color var(--textColor)
+        text-decoration none
+
+        &:focus
+        &:hover
+        &:active
+            border-bottom-color var(--borderColor)
+
+    &__item-current
+        @extends $bodySmall
+        color var(--currentItemColor)
+
+    &__separator
+        margin-left 8px
+        display inline-block
+        position relative
+        top -1px
+
+        & svg
+            & .icon-right-triangle__shape
+                fill var(--iconColor)

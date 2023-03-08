@@ -1,0 +1,33 @@
+breakpoint = 1000px
+
+.listing-page-header
+    background-color charcoalLight
+    fluid(padding-bottom, 64px, 80px)
+    fluid(padding-top, 64px, 80px)
+
+    &__wrapper
+        position relative
+
+        &--sidebar
+            @extends $contentContainer
+
+            +above(breakpoint)
+                display grid
+                grid-template-columns 320px minmax(0, 1fr)
+
+        &--no-sidebar
+            @extends $contentContainerInterior
+
+    &__breadcrumb
+        display none
+
+        +above(1000px)
+            display flex
+            margin-bottom 32px
+
+    &__title
+        @extends $headline1
+        color white
+
+    &__featured
+        flex 1

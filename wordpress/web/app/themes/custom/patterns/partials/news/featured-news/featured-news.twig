@@ -1,0 +1,25 @@
+<article class="featured-news featured-news--{{ background }}">
+    {% if post.featuredImage %}
+        <div class="featured-news__image">
+            {% include 'partials/image/image.twig' with {
+                image: post.featuredImage,
+                cropWidth: 880,
+                cropHeight: 560,
+                background: 'dark',
+            } %}
+        </div>
+    {% endif %}
+    <div class="featured-news__date">
+        {{ post.date }}
+    </div>
+    <div class="featured-news__title">
+        {% include 'bits/linked-title/linked-title.twig' with {
+            url: post.permalink,
+            text: post.title,
+            background: 'dark'
+        } %}
+    </div>
+    <div class="featured-news__summary">
+        {{ post.summary }}
+    </div>
+</article>

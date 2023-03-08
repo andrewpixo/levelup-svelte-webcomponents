@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ _target.label }}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width"/>
+
+    <link rel="stylesheet" href="https://use.typekit.net/kuc5lwk.css">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body class="page" {% block bodyTag%}{% endblock %} >
+
+{{ yield }}
+
+{% block afterYield %}
+{% endblock %}
+<script src="/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<ul class="eyebrow-menu eyebrow-menu--{{ siteUnit }}">
+    {% for item in eyebrowMenu.items %}
+        <li class="eyebrow-menu__item">
+            <a
+                href="{{ item.url }}"
+                class="
+                    eyebrow-menu__item-link
+                    {{ item.isActive ? ' eyebrow-menu__item-link--is-active' : '' }}
+                "
+            >
+                {{ item.title }}
+            </a>
+        </li>
+    {% endfor %}
+    <li class="eyebrow-menu__item">
+        {% include 'bits/quick-search/quick-search.twig' %}
+    </li>
+</ul>

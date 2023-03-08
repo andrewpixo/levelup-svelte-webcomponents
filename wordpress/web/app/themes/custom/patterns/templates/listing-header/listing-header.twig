@@ -1,0 +1,22 @@
+<div class="listing-page-header">
+    <div class="listing-page-header__wrapper {{ (sidebar|default) ? 'listing-page-header__wrapper--sidebar' : 'listing-page-header__wrapper--no-sidebar' }}">
+        {% if sidebar %}
+            <div class="listing-page-header__sidebar">
+            </div>
+        {% endif %}
+        <div class="listing-page-header__content">
+            {% if breadcrumbs %}
+                <div class="listing-page-header__breadcrumb">
+                    {% include "partials/navigation/breadcrumbs/breadcrumbs.twig" %}
+                </div>
+            {% endif %}
+            <h1 class="listing-page-header__title">
+                {{ post.title }}
+            </h1>
+            <div class="listing-page-header__featured">
+                {% block feature %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+</div>

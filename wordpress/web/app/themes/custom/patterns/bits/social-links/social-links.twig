@@ -1,0 +1,62 @@
+<ul class="social-links">
+    {% if contactInfo.facebookLink %}
+        <li class="social-links__item">
+            <a href="{{ contactInfo.facebookLink }}" class="social-links__item-link">
+                <span class="social-links__item-text">
+                    Facebook page for {{ site.name }}
+                </span>
+                {% include 'bits/icons/facebook.twig' %}
+            </a>
+        </li>
+    {% endif %}
+    {% if contactInfo.flickrLink %}
+        <li class="social-links__item">
+            <a href="{{ contactInfo.flickrLink }}" class="social-links__item-link">
+                <span class="social-links__item-text">
+                    Flickr profile for {{ site.name }}
+                </span>
+                {% include 'bits/icons/flickr.twig' %}
+            </a>
+        </li>
+    {% endif %}
+    {% if contactInfo.linkedInLink %}
+        <li class="social-links__item">
+            <a href="{{ contactInfo.linkedInLink }}" class="social-links__item-link">
+                <span class="social-links__item-text">
+                    Linked in profile for {{ site.name }}
+                </span>
+                {% include 'bits/icons/linkedin.twig' %}
+            </a>
+        </li>
+    {% endif %}
+    {% if contactInfo.twitterLink %}
+        <li class="social-links__item">
+            <a href="{{ contactInfo.twitterLink }}" class="social-links__item-link">
+                <span class="social-links__item-text">
+                    Twitter account for {{ site.name }}
+                </span>
+                {% include 'bits/icons/twitter.twig' %}
+            </a>
+        </li>
+    {% endif %}
+    {% if contactInfo.instagramLink %}
+        <li class="social-links__item">
+            <a href="{{ contactInfo.instagramLink }}" class="social-links__item-link">
+                <span class="social-links__item-text">
+                    Instagram account for {{ site.name }}
+                </span>
+                {% include 'bits/icons/instagram.twig' %}
+            </a>
+        </li>
+    {% endif %}
+    {% if contactInfo.youtubeLink %}
+        <li class="social-links__item">
+            <a href="{{ contactInfo.youtubeLink }}" class="social-links__item-link">
+                <span class="social-links__item-text">
+                    Youtube account for {{ site.name }}
+                </span>
+                {% include 'bits/icons/youtube.twig' %}
+            </a>
+        </li>
+    {% endif %}
+</ul>

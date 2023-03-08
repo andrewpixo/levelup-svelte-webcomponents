@@ -1,0 +1,29 @@
+{% extends "templates/base.twig" %}
+
+{% block header %}
+    {% embed 'templates/listing-header/listing-header.twig' %}
+        {% block feature %}
+            {% if post.featuredStory | default %}
+                {% include 'partials/news/featured-news/featured-news.twig' with {
+                    post: post.featuredStory
+                } %}
+            {% endif %}
+        {% endblock %}
+    {%  endembed %}
+{% endblock %}
+
+{% block content %}
+    {% embed "templates/listing-content/listing-content.twig" with {
+        withCards: true,
+    } %}
+        {% block content %}
+            {% if post.list | length > 0 %}
+                {% for post in post.list %}
+                    {% include 'partials/news/news-card/news-card.twig' %}
+                {% endfor %}
+            {% else %}
+                    {% include 'partials/empty-listing-error/empty-listing-error.twig' %}
+            {% endif %}
+        {% endblock %}
+    {% endembed %}
+{% endblock %}

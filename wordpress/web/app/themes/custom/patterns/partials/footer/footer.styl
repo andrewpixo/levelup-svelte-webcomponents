@@ -1,0 +1,119 @@
+breakpointSmall = 784px
+breakpointLarge = 1300px
+
+.footer
+    --backgroundColor white
+    --iconbackgroundColor charcoal
+    --listLinkTextColorActive charcoal
+    --listLinkTextColor charcoal
+
+    background-color var(--backgroundColor)
+    fluid('padding-top', 64px, 80px)
+    fluid('padding-bottom', 64px, 80px)
+
+    &__container
+        @extends $contentContainer
+
+    &__wrapper
+        +above(breakpointSmall)
+            @supports (display: grid)
+                display grid
+            grid-template-columns 5fr 3fr
+
+        +above(breakpointLarge)
+            grid-template-columns 3fr repeat(2, 1fr)
+
+    &__content
+        flex 3
+
+        +above(breakpointLarge)
+            display flex
+
+    &__social
+        flex 2
+
+    &__brand
+        margin-bottom 48px
+
+        +above(breakpointSmall)
+            flex 0 0 100%
+
+        +above(breakpointLarge)
+            flex 1
+
+    &__contact-address
+    &__links
+        color charcoal
+        margin-bottom 24px
+
+    &__contact-address
+        color charcoal
+
+        +above(breakpointSmall)
+            padding-right 32px
+            flex 1
+
+    &__contact-phone-and-email
+        +above(breakpointSmall)
+            flex 1
+
+    &__contact-address
+    &__contact-phone-and-email
+        @extends $linkSmall
+        margin-bottom 24px
+        margin-right 32px
+        padding-top 16px
+        border-top solid 2px var(--borderColor)
+
+        +below(breakpointSmall)
+            margin-right 0
+
+    &__links
+        +above(breakpointSmall)
+            padding-right 32px
+            flex 1
+
+    &__label
+    &__copyright
+        @extends $detail
+
+    &__contact-phone
+    &__contact-email
+        display inline-block
+
+    &__contact-phone
+        margin-bottom 24px
+
+    &__information
+        margin-bottom 48px
+
+        +above(breakpointSmall)
+            display flex
+            flex-wrap wrap
+
+        +above(breakpointLarge)
+            flex 1
+            align-content flex-start
+
+    &__links-list
+        padding-top 16px
+        width 100%
+
+        +below(breakpointLarge)
+            display flex
+            flex-direction column
+            justify-content flex-end
+            margin-bottom 48px
+
+    &__links-list-item:not(:last-child)
+        margin-bottom 16px
+
+    &__links-list-item-link
+        @extends $hypertext
+        color var(--listLinkTextColor)
+
+        &:focus
+        &:hover
+        &:active
+            color var(--listLinkTextColorActive)
+

@@ -1,0 +1,43 @@
+{% extends "templates/base.twig" %}
+
+{% block header %}
+    <div class="home-header">
+        <div class="home-header__container">
+            <div class="home-header__logo">
+                {% include 'bits/icons/we-build-logo.twig' %}
+            </div>
+            <h1 class="home-header__title">{{ post.title }}</h1>
+            <div class="home-header__intro">
+                {{ post.intro | trim }}
+            </div>
+            <div class="home-header__calls-to-action">
+                <div class="home-header__call-to-action">
+                    {% include 'bits/button/button.twig' with {
+                        url: post.ctaOne.url,
+                        text: post.ctaOne.text,
+                        external: post.ctaOne.external,
+                    } %}
+                </div>
+                <div class="home-header__call-to-action">
+                    {% include 'bits/button/button.twig' with {
+                        url: post.ctaTwo.url,
+                        text: post.ctaTwo.text,
+                        external: post.ctaTwo.external,
+                    } %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="home-content">
+        {% embed "templates/listing-content/listing-content.twig" %}
+            {% block content %}
+                {% include 'components/component.twig' with {
+                    'components': post.components
+                } only %}
+            {% endblock %}
+        {% endembed %}
+    </div>
+{% endblock %}

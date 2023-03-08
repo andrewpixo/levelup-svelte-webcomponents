@@ -1,0 +1,13 @@
+fluid(
+  property,
+  min-value,
+  max-value,
+  min-vw = 400px,
+  max-vw = 1100px)
+    {property} min-value
+
+    @media screen and (min-width min-vw)
+      {property} "calc(%s + %s * ((100vw - %s) / %s))" % (min-value (remove-unit(max-value - min-value)) min-vw (remove-unit(max-vw - min-vw)))
+
+    @media screen and (min-width max-vw)
+        {property} max-value

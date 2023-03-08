@@ -1,6 +1,7 @@
 <svelte:options tag="test-counter"/>
+
 <script lang="ts">
-    export let count: number = 0
+    export let count = 0;
     let element: Element;
 
     const increment = () => {
@@ -15,8 +16,9 @@
         element.dispatchEvent(ev);
     }
 </script>
-
-<button bind:this={element} on:click={increment}>
-    Increment
-</button>
-<p data-testId="counter-value">{count}</p>
+<div>
+    <button bind:this={element} on:click={increment}>
+        Increment
+    </button>
+    <p data-testId="counter-value">{count}</p>
+</div>

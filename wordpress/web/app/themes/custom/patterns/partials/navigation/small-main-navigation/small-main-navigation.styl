@@ -1,0 +1,198 @@
+.small-main-navigation-toggle
+    --buttonBackgroundColor white
+    --collapsedTextColor charcoal
+    --expandedTextColor charcoal
+    --iconFillColor charcoal
+
+    align-items center
+    cursor pointer
+    display flex
+    margin-left auto
+    position relative
+
+    +above(breakpointHeaderLarge)
+        display none
+
+    &__text
+        @extends $headline5
+        color var(--collapsedTextColor)
+        flex 1
+        margin-right 8px
+
+    &__icon
+        transition all 0.3s
+        margin-bottom -2px
+
+        & .x__shape
+        & .menu__shape
+            fill var(--iconFillColor)
+
+    &[aria-expanded=true]
+        z-index 2
+        position relative
+        background-color var(--buttonBackgroundColor)
+
+        & .small-main-navigation-toggle__content-container--expanded
+            display block
+        & .small-main-navigation-toggle__content-container--collapsed
+            display none
+
+    &[aria-expanded=false]
+        & .small-main-navigation-toggle__content-container--expanded
+            display none
+        & .small-main-navigation-toggle__content-container--collapsed
+            display block
+
+    &[aria-expanded=true]
+        & ^[0]__text
+            color var(--expandedTextColor)
+
+.small-main-navigation
+    --activeBackgroundColor white
+    --backgroundColor charcoal
+    --iconFillColor white
+    --iconFillColorActive charcoal
+    --itemBackgroundColor soot
+    --itemBackgroundColorActive white
+    --itemTextColorActive charcoal
+
+    background-color var(--backgroundColor)
+    display none
+
+    +above(breakpoint)
+        display none
+
+    @supports (display: grid)
+        position absolute
+        top 100%
+        left 0
+        right 0
+        z-index -1
+        opacity 0
+
+    &__list
+        padding 16px
+
+    &__item
+        &:not(:last-child)
+            margin-bottom 8px
+
+    &__item-container
+        display flex
+
+    &__item-link
+        @extends $headline5
+        color white
+        display block
+        text-decoration none
+        background-color var(--itemBackgroundColor)
+        padding 12px 16px
+        flex 1
+        transition all 0.3s
+
+        &--active
+        &--active-trail
+            border-left 4px solid var(--itemBackgroundColorActive)
+
+        &:focus
+        &:hover
+        &:active
+            background-color var(--itemBackgroundColorActive)
+            color var(--itemTextColorActive)
+
+            & .small-main-navigation__item-link-icon
+                transform translateX(4px)
+
+                & .right-chevron__shape
+                    fill var(--iconFillColorActive)
+
+    &__item-link-icon
+        display inline-block
+        margin-left 8px
+        transition all 0.3s
+
+        & .right-chevron__shape
+        & .down-toggle-icon__shape
+            fill var(--iconFillColor)
+
+    &__item-toggle
+        align-items center
+        background-color var(--itemBackgroundColor)
+        cursor pointer
+        display flex
+        flex 0 0 56px
+        justify-content center
+        margin-left 2px
+        transition all 0.3s
+
+        &:focus
+        &:hover
+        &:active
+            background-color var(--activeBackgroundColor)
+
+            & .down-toggle-icon__shape
+                fill var(--iconFillColorActive)
+
+        &[aria-expanded=true]
+            & .down-toggle-icon
+                transform rotate(180deg)
+
+                & .down-toggle-icon__shape
+                    fill var(--iconFillColorActive)
+
+        &[aria-expanded=true]
+            background-color var(--activeBackgroundColor)
+
+    &__item-toggle-icon
+        width 16px
+
+        & .down-toggle-icon__shape
+        & ._mark
+            fill white
+
+    &__children
+        margin-top 2px
+        margin-bottom 16px
+        display none
+
+        &[data-active=true]
+            display block
+
+    &__children-item:not(:last-child)
+        margin-bottom 2px
+
+    &__children-item-link
+        color white
+        background-color var(--itemBackgroundColor)
+        padding 16px 32px
+        display block
+        text-decoration none
+        transition all 0.3s
+
+        &--active
+        &--active-trail
+            border-left 4px solid white
+
+        &:focus
+        &:hover
+        &:active
+            background-color var(--itemBackgroundColorActive)
+            color var(--itemTextColorActive)
+
+    &__search
+        background-color var(--itemBackgroundColor)
+        padding 16px
+
+        +above(breakpointHeaderSmall)
+            display none
+
+.small-main-navigation
+    &[data-collapsing]
+        animation slideOut 0.5s
+    &[data-expanding]
+        z-index 2
+        animation slideIn 0.5s
+    &[data-expanded=true]
+        z-index 2
+        opacity 1
+        display block

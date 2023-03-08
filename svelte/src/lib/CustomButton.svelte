@@ -1,10 +1,14 @@
 <svelte:options tag="custom-button"/>
-<style>
+<style lang="scss">
     .button-group {
         display: flex;
         flex-direction: row;
         justify-content: center;
         align-items: center;
+
+        & * {
+            background-color: blue;
+        }
     }
 
     .button-element {
@@ -36,6 +40,7 @@
         border-bottom-right-radius: 0.5rem;
     }
 </style>
+
 <script lang="ts">
     let leftElement: Element;
     let rightElement: Element;

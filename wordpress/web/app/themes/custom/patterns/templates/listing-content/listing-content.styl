@@ -1,0 +1,17 @@
+.listing-content
+    background-color smoke
+    fluid(padding-bottom, 80px, 176px)
+    fluid(padding-top, 64px, 80px)
+
+    &__wrapper
+        position relative
+
+        &--sidebar
+            @extends $contentContainer
+
+            +above(1000px)
+                display grid
+                grid-template-columns 320px minmax(0, 1fr)
+
+        &--no-sidebar
+            @extends $contentContainerInterior

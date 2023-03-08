@@ -1,0 +1,18 @@
+{% extends "templates/base.twig" %}
+
+{% block header %}
+    {% include 'partials/basic-header/basic-header.twig' %}
+{% endblock %}
+
+{% block content %}
+    <div class="basic-page__content">
+        {% embed "templates/listing-content/listing-content.twig" %}
+            {% block content %}
+                {% include 'components/component.twig' with {
+                    components: post.components,
+                    sidebar : post.sidebar
+                } only %}
+            {% endblock %}
+        {% endembed %}
+    </div>
+{% endblock %}

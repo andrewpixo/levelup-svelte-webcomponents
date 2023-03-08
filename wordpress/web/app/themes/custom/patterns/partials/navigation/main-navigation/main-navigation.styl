@@ -1,0 +1,160 @@
+.main-navigation
+    --itemLinkIconColor charcoal
+    --itemLinkTextColor charcoal
+    --itemLinkBorderColorActive smokeDarkest
+    --itemLinkBorderColorFocus charcoal
+
+    +below(breakpointHeaderLarge)
+        display none
+
+    &__list
+        display flex
+        justify-content space-between
+        margin-left -24px
+        margin-right -24px
+        margin-bottom -11px
+
+    &__item
+        &:not(:last-child)
+            margin-left 8px
+        &:not(:first-child)
+            margin-right 8px
+
+    &__item-link
+        @extends $headline5
+        align-items center
+        color var(--itemLinkTextColor)
+        display flex
+        font-size 20px
+        padding 10px 16px
+        position relative
+        text-decoration none
+        transition all 0.2s
+        white-space nowrap
+        border-bottom: 4px solid transparent
+
+        & ^[0]__item-link-icon svg
+            position relative
+            top -3px
+            transform rotate(0)
+            transition transform 200ms ease-in-out
+
+        &:focus
+        &:hover
+        &:active
+        &[aria-expanded=true]
+            z-index 2
+            & ^[0]__item-link-icon svg
+                transform rotate(-90deg)
+
+        &--active
+            border-bottom 4px solid var(--itemLinkBorderColorActive)
+
+        &:focus
+        &:hover
+            border-bottom 4px solid var(--itemLinkBorderColorFocus)
+
+    &__item-link-icon-container
+        align-items center
+        display inline-flex
+        margin-left 8px
+        width 8px
+
+        & .down-toggle-icon__shape
+            fill var(--itemLinkIconColor)
+
+.mega-menu
+    --backgroundColor charcoal
+    --itemBackgroundColor soot
+    --itemBackgroundColorFocus white
+    --itemLinkIconColor white
+    --itemTextColorFocus charcoal
+
+    background-color var(--backgroundColor)
+    position absolute
+    left 0
+    right 0
+    top 100%
+    opacity 0
+    padding-top 32px
+    padding-bottom 32px
+    transition all 0.2s
+
+    &:before
+    &:after
+        background-color var(--backgroundColor)
+        bottom 0
+        content ""
+        display block
+        position absolute
+        top 0
+        width 100vw
+
+    &:before
+        right 100%
+
+    &:after
+        left 100%
+
+    &__container
+        @extends $contentContainer
+        display flex
+
+    &__title
+        margin-right 48px
+        width 400px
+
+    &__title-line
+        margin-bottom 16px
+
+    &__title-text-link-icon
+        display inline-block
+        transition all 0.3s
+
+        & svg
+            transform rotate(-90deg)
+
+        & .down-toggle-icon__shape
+            fill var(--itemLinkIconColor)
+
+    &__title-text-link
+        @extends $headline2
+        text-decoration none
+        color white
+
+        &:focus
+        &:hover
+        &:active
+            ^[0]__title-text-link-icon
+                transform translate(4px, 0)
+    &__list
+        column-count 2
+        column-gap 8px
+        flex 1
+
+    &__item
+        background-color var(--itemBackgroundColor)
+        break-inside avoid
+        margin-bottom 8px
+
+    &__item-link
+        color white
+        padding 16px
+        text-decoration none
+        display block
+        transition all 0.3s
+
+        &:focus
+        &:hover
+        &:active
+            background-color var(--itemBackgroundColorFocus)
+            color var(--itemTextColorFocus)
+
+        &--active
+        &--active-trail
+            border-left 4px solid white
+
+.mega-menu[data-active=true]
+    z-index 2
+    opacity 1
+    display block

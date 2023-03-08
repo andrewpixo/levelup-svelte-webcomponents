@@ -1,0 +1,22 @@
+{% import "macros/image-source/image-source.twig" as imageMacros %}
+
+<div class="text">
+    {% if component.imageToggle %}
+        <div class="text__image text__image--{{ component.placement }} text__image--{{ component.width }}">
+            {{ imageMacros.createWidthOnlyCrop(component.image, 500, background) }}
+        </div>
+    {% endif %}
+
+    <div class="text__content ">
+        <h2 class="text__header  {{ component.hideHeader ? 'text__header--is-hidden' : '' }}">
+            {{ component.header }}
+        </h2>
+        {{ component.richText }}
+    </div>
+
+    {% if component.imageToggle %}
+        <div class="text__mobile-image">
+            {{ imageMacros.createWidthOnlyCrop(component.image, 500, background) }}
+        </div>
+    {% endif %}
+</div>

@@ -1,0 +1,79 @@
+{% macro create(image, designWidth, designHeight, background) %}
+    {% set dimensions = getDimensions(designWidth, designHeight) %}
+    <figure class="captioned-image">
+        <picture class="captioned-image__picture">
+            <source
+                srcset="{% for dimension in dimensions %}{{ image.src|resize(dimension.width,dimension.height)|towebp }} {{ dimension.width }}w, {% endfor %}"
+                sizes="(max-width: 800px) 100vw, 50vw"
+                type="image/webp"
+            >
+            <source
+                srcset="{% for dimension in dimensions %}{{ image.src|resize(dimension.width,dimension.height)|tojpg }} {{ dimension.width }}w, {% endfor %}"
+                sizes="(max-width: 800px) 100vw, 50vw"
+                type="image/jpeg"
+            >
+            <img class="captioned-image__image" loading="lazy" src="{{ image.src|resize(designWidth,designHeight)|tojpg }}" alt="{{ image.altText }}">
+        </picture>
+        {%  if image.caption %}
+            <figcaption class="captioned-image__caption captioned-image__caption--{{ background }}">
+                {{ image.caption }}
+            </figcaption>
+        {% endif %}
+    </figure>
+{% endmacro %}
+
+{% macro createAlwaysFullWidth(image, designWidth, designHeight, background) %}
+    {% set dimensions = getDimensions(designWidth, designHeight) %}
+    <figure class="captioned-image captioned-image--{{ background }}">
+        <picture class="captioned-image__picture">
+            <source
+                srcset="{% for dimension in dimensions %}{{ image.src|resize(dimension.width,dimension.height)|towebp }} {{ dimension.width }}w, {% endfor %}"
+                sizes="100vw"
+                type="image/webp"
+            >
+            <source
+                srcset="{% for dimension in dimensions %}{{ image.src|resize(dimension.width,dimension.height)|tojpg }} {{ dimension.width }}w, {% endfor %}"
+                sizes="100vw"
+                type="image/jpeg"
+            >
+            <img class="captioned-image__image" loading="lazy" src="{{ image.src|resize(designWidth, designHeight)|tojpg }}" alt="{{ image.altText }}">
+        </picture>
+        {%  if image.caption %}
+            <figcaption class="captioned-image__caption captioned-image__caption--{{ background }}">
+                {{ image.caption }}
+            </figcaption>
+        {% endif %}
+    </figure>
+{% endmacro %}
+
+{% macro createWidthOnlyCrop(image, designWidth, background) %}
+    {% set dimensions = getDimensions(designWidth, designWidth) %}
+    <figure class="captioned-image">
+        <picture class="captioned-image__picture">
+            <source
+                srcset="{% for dimension in dimensions %}{{ image.src|resize(dimension.width)|towebp }} {{ dimension.width }}w, {% endfor %}"
+                sizes="(max-width: 800px) 100vw, 50vw"
+                type="image/webp"
+            >
+            <source
+                srcset="{% for dimension in dimensions %}{{ image.src|resize(dimension.width)|tojpg }} {{ dimension.width }}w, {% endfor %}"
+                sizes="(max-width: 800px) 100vw, 50vw"
+                type="image/jpeg"
+            >
+            <img class="captioned-image__image" loading="lazy" src="{{ image.src|resize(designWidth)|tojpg }}" alt="{{ image.altText }}">
+        </picture>
+        {%  if image.caption %}
+            <figcaption class="captioned-image__caption captioned-image__caption--{{ background }}">
+                {{ image.caption }}
+            </figcaption>
+        {% endif %}
+    </figure>
+{% endmacro %}
+
+{% macro createHeightOnlyCropForGallery(image) %}
+    <figure class="captioned-image">
+        <picture class="captioned-image__picture">
+            <img class="captioned-image__gallery-image" loading="lazy" src="{{ image.src|tojpg }}" alt="{{ image.altText }}">
+        </picture>
+    </figure>
+{% endmacro %}

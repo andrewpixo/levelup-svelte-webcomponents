@@ -1,0 +1,62 @@
+<div class="footer">
+    <div class="footer__container">
+        <div class="footer__wrapper">
+            <div class="footer__content">
+                <div class="footer__brand">
+                    {% include 'bits/logos/starter-kit-logo.twig' %}
+                </div>
+                <div class="footer__information">
+                    {% if contactInfo.address %}
+                        <div class="footer__contact-address">
+                            <div class="footer__label">Address</div>
+                            <a target="_blank"
+                               href="https://maps.google.com/maps?q={{ contactInfo.address|url_encode }}"
+                               class="footer__address">
+                                {{ contactInfo.address|nl2br }}
+                            </a>
+                        </div>
+                    {% endif %}
+                    {% if contactInfo.phone or contactInfo.email %}
+                        <div class="footer__contact-phone-and-email">
+                            {% if contactInfo.phone %}
+                                <div class="footer__label">Phone</div>
+                                <a href="tel:{{ contactInfo.phone }}" class="footer__contact-phone">
+                                    {{ contactInfo.phone }}
+                                </a>
+                            {% endif %}
+                            <br>
+                            {% if contactInfo.email %}
+                                <div class="footer__label">Email</div>
+                                <a href="mailto:{{ contactInfo.email }}" class="footer__contact-email">
+                                    {{ contactInfo.email }}
+                                </a>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            <ul class="footer__links-list">
+                {% for item in footerLinks.items %}
+                    <li class="footer__links-list-item">
+                        <a href="{{ item.url }}" class="footer__links-list-item-link">
+                            {{ item.title }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+            <nav class="footer__social" aria-label="footer social media links">
+                {% if
+                    contactInfo.facebookLink or
+                    contactInfo.flickrLink or
+                    contactInfo.linkedInLink or
+                    contactInfo.twitterLink or
+                    contactInfo.instagramLink or
+                    contactInfo.youTubeLink
+                %}
+                    {% include 'bits/social-links/social-links.twig' %}
+                {% endif %}
+            </nav>
+        </div>
+        <div class="footer__copyright">{{ contactInfo.copyright }}</div>
+    </div>
+</div>

@@ -1,0 +1,6 @@
+bits/ (atom)
+partials/ (molecule + organism)
+components/ (type of partial)
+templates/
+pages/
+macros/

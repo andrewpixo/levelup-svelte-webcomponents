@@ -1,0 +1,32 @@
+.button
+    @extends $headline5
+    background-color transparent
+    border 2px solid white
+    border-radius 8px
+    display inline-block
+    font-size 20px
+    font-weight 700
+    line-height 28px
+    padding 10px 16px
+    text-decoration none
+    transition background-color 200ms ease-in-out
+
+    &:focus
+    &:hover
+        background-color white
+
+    &__text
+        transition color 200ms ease-in-out
+        color white
+        ~/:hover &
+            color charcoal
+
+    &__icon
+        margin-left 8px
+        position relative
+        bottom -2px
+        & > svg
+            transition fill 200ms ease-in-out
+            fill white
+        ~/:hover & > svg
+            fill charcoal

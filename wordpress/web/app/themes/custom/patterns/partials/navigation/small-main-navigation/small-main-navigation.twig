@@ -1,0 +1,76 @@
+<button aria-label="Toggle main navigation"
+        aria-expanded="false"
+        class="small-main-navigation-toggle js-small-main-navigation-toggle">
+    <span class="small-main-navigation-toggle__content-container small-main-navigation-toggle__content-container--collapsed">
+        <span class="small-main-navigation-toggle__text">
+            Menu
+        </span>
+        <span class="small-main-navigation-toggle__icon">
+            {% include 'bits/icons/menu.twig' %}
+        </span>
+    </span>
+    <span class="small-main-navigation-toggle__content-container small-main-navigation-toggle__content-container--expanded">
+        <span class="small-main-navigation-toggle__text">
+           Close
+        </span>
+        <span class="small-main-navigation-toggle__icon">
+            {% include 'bits/icons/x.twig' %}
+        </span>
+    </span>
+</button>
+<div
+    role="navigation"
+    aria-label="Main Navigation"
+    class="small-main-navigation">
+    <ul class="small-main-navigation__list">
+        {% for item in mainMenu.items %}
+            <li class="small-main-navigation__item">
+                <div class="small-main-navigation__item-container">
+                <a
+                    class="
+                    small-main-navigation__item-link
+                    {{ item.isActive ? 'small-main-navigation__item-link--active' }}
+                    {{ item.isDescendantActive ? 'small-main-navigation__item-link--active-trail' }}"
+                    href="{{ item.url }}">{{ item.title }}
+                    {% if item.children %}
+                        <span class="small-main-navigation__item-link-icon">
+                            {% include 'bits/icons/right-chevron.twig' %}
+                        </span>
+                    {% endif %}
+                </a>
+                {% if item.children %}
+                    <button aria-expanded="false" class="small-main-navigation__item-toggle" aria-label="toggle {{ item.title }} menu">
+                        <span class="small-main-navigation__item-toggle-icon">
+                            {% include 'bits/icons/down-toggle.twig' %}
+                        </span>
+                    </button>
+                {% endif %}
+                </div>
+                {% if item.children %}
+                    <div class="small-main-navigation__children">
+                        <ul class="small-main-navigation__children-list">
+                            {% for item in item.children %}
+                                <li class="small-main-navigation__children-item">
+                                    <a
+                                        class="
+                                        small-main-navigation__children-item-link
+                                        {{ item.isActive ? 'small-main-navigation__children-item-link--active' }}
+                                        {{ item.isDescendantActive ? 'small-main-navigation__children-item-link--active-trail' }}
+                                    "
+                                        href="{{ item.url }}">{{ item.title }}
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+    <div class="small-main-navigation__search">
+        {% include 'bits/quick-search/quick-search.twig' with {
+            isLarge: true,
+            id: 'quick-search-small'
+        } %}
+    </div>
+</div>

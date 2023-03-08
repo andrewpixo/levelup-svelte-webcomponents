@@ -1,0 +1,30 @@
+cardImageBreakpoint = largeDeviceBreakpoint
+
+.card-with-image
+    --cardBackgroundColor cloud
+    --cardBorderColor charcoal
+    --cardTitleColor charcoalLight
+    --cardDateColor greyDarkest
+
+    align-items center
+    background-color var(--cardBackgroundColor)
+    border 2px solid var(--cardBorderColor)
+    display flex
+    margin-bottom 16px
+
+    &__content
+        flex 1
+        margin 0
+
+        +above(cardImageBreakpoint)
+            display flex
+
+    &__image
+        display none
+        margin 0
+        max-width 320px
+
+        +above(cardImageBreakpoint)
+            display block
+            flex 0 0 36%
+

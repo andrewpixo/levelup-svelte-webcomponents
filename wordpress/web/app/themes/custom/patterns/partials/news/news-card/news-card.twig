@@ -1,0 +1,20 @@
+{% embed 'templates/card-with-image/card-with-image.twig' %}
+    {% block text %}
+        <div class="news-card-content">
+            <div class="news-card-content__date">
+                {{ post.publishDate }}
+            </div>
+            <a class="news-card-content__title" href="{{ post.permalink }}">
+                {{ post.title }}
+            </a>
+        </div>
+    {% endblock %}
+    {% block image %}
+        {% include 'partials/image/image.twig' with {
+            image: post.featuredImage,
+            cropWidth: 880,
+            cropHeight: 560,
+            background: 'dark',
+        } %}
+    {% endblock %}
+{% endembed %}

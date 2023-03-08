@@ -1,0 +1,45 @@
+.link-cards
+    @extends $componentWithMargin
+    --card-background-color white
+    --card-border-color charcoal
+    --card-heading-text-color charcoalLight
+    --card-heading-text-color-focused black
+    --card-description-text-color greyDarkest
+
+    &__introduction
+        margin-bottom 48px
+
+    &__heading
+        @extends $headline2
+        &:not(:last-child)
+            margin-bottom 8px
+        &--is-hidden
+            @extends $invisibleShowFocused
+
+    &__description
+        @extends $body
+
+    &__cards
+        display grid
+        grid-column-gap 16px
+        grid-row-gap 16px
+        grid-template-columns repeat(auto-fit,minmax(272px,1fr))
+        +above(883px)
+            grid-template-columns repeat(auto-fit,minmax(336px,1fr))
+
+    &__card
+        border solid 2px var(--card-border-color)
+
+    &__card-text
+        border-top solid 2px var(--card-border-color)
+        padding 24px
+
+    &__card-heading
+        @extends $linkHeadline3
+        color var(--card-heading-text-color)
+        margin-bottom 8px
+
+    &__card-description
+        @extends $bodySmall
+        color var(--card-description-text-color)
+

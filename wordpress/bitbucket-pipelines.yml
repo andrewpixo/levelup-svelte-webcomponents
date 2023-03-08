@@ -1,0 +1,59 @@
+pipelines:
+    definitions:
+        - step: &build-php-test
+              name: Install PHP packages and run PHPUnit
+              image: php:7.4
+              caches:
+                  - composer
+              script:
+                  - apt-get update && apt-get install -y unzip
+                  - apt-get --yes install git
+                  - curl https://s3-us-west-2.amazonaws.com/dbs-pixo-support-local.pixodev.net/faa/develop-env > ./.env
+                  - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --version=1.10.16
+                  - composer install
+                  - cd web/app/themes/custom
+                  - composer install
+              artifacts:
+                  - vendor/**
+                  - web/wp/**
+                  - web/app/themes/custom/vendor/**
+                  - web/app/mu-plugins/**
+                  - web/app/plugins/**
+        - step: &build-node
+              name: Build assets
+              image: node:16-alpine
+              caches:
+                  - node
+              script:
+                  - apk update && apk upgrade
+                  - apk add --no-cache bash git openssh
+                  - cd web/app/themes/custom
+                  - ls -lh
+                  - npm install
+                  - npm run fractal-build
+              artifacts:
+                  - web/app/themes/custom/dist/**
+                  - web/app/themes/custom/build/**
+    branches:
+        qa:
+            - parallel:
+                - step: *build-php-test
+                - step: *build-node
+            - step:
+                  script:
+                      - cp ${BITBUCKET_CLONE_DIR}/web/app/themes/custom/build/css/main* ${BITBUCKET_CLONE_DIR}/web/app/themes/custom/build/css/main.css
+                      - cp ${BITBUCKET_CLONE_DIR}/web/app/themes/custom/build/js/main* ${BITBUCKET_CLONE_DIR}/web/app/themes/custom/build/js/main.js
+            - step:
+                  name: Rsync
+                  deployment: Test
+                  script:
+                      - rsync -avz --delete --exclude='.env' --exclude='uploads' --exclude='web/.htaccess' --exclude='web/app/cache' ./ $QA_USER@$QA_HOST:$QA_PATH/
+            - step:
+                  script:
+                      - ssh -tnA -p 22 $QA_USER@$QA_HOST -- 'cd /var/www/html && docker-compose -f docker-compose-production.yml up --detach --remove-orphans'
+    custom:
+        reset-production:
+            - step:
+                  name: Reset production website with example data
+                  script:
+                      - ssh -tnA -p 22 $QA_USER@$QA_HOST -- '/var/www/html/bin/reset-site.sh'

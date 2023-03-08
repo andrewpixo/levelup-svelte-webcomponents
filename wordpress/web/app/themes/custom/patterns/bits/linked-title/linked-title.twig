@@ -1,0 +1,8 @@
+<{{ element|default('h2') }} class="linked-title linked-title--{{ background }}">
+    <a href="{{ url }}" class="linked-title__link">
+        {{ text | trim }}
+        <span class="linked-title__link-icon">
+            {% include 'bits/icons/right-chevron.twig' %}
+        </span>
+    </a>
+</{{ element|default('h2') }}>

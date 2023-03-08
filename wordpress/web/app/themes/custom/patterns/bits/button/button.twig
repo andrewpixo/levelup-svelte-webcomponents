@@ -1,0 +1,34 @@
+{% if button.isButton | default %}
+    <button
+        type="{{ button.type | default }}"
+        class="
+            button
+            button--{{ button.width | default('natural') }}-width
+            {{ isActive ? 'button--active' }}
+        "
+        {{ button.isDisabled ? 'disabled' }}
+    >
+        <div class="button__container">
+            <span class="button__text">
+                {{ button.text | trim }}
+            </span>
+        </div>
+    </button>
+{% else %}
+    <a href="{{ url }}"
+        class="
+            button
+            button--{{ width | default('natural') }}-width
+            {{ isActive ? 'button--active' }}
+        "
+        {{ isDisabled ? 'disabled' }}
+    >
+        <span class="button__text">
+            {{ text | trim }}
+        </span>
+
+        <span class="button__icon">
+            {% include 'bits/icons/right-chevron.twig' %}
+        </span>
+    </a>
+{% endif %}

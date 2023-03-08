@@ -1,0 +1,27 @@
+.page
+    background-color smoke
+    overflow-x hidden
+
+    &__header
+        background-color white
+        position relative
+
+    &__skip-to-content
+        background-color black
+        color white
+        left 8px
+        padding 16px 16px
+        position absolute
+        text-decoration none
+        top 8px
+        transform translateY(-140%)
+        transition 0.2s all ease-in
+        z-index 1
+
+        &:focus
+        &:active
+            transform translateY(0%)
+
+    &__content
+        overflow hidden
+        position relative

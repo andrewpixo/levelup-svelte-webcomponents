@@ -15,7 +15,8 @@
     "checkJs": true,
     "isolatedModules": true,
     "types": [
-      "jest"
+      "jest",
+      "node"
     ],
     "preserveValueImports": false
   },

@@ -1,0 +1,13 @@
+{% extends "templates/base.twig" %}
+
+{% block content %}
+    <div class="landing-page-body">
+        {% embed "templates/listing-content/listing-content.twig" %}
+            {% block content %}
+                {% include 'components/component.twig' with {
+                    'components': post.components
+                } only %}
+            {% endblock %}
+        {% endembed %}
+    </div>
+{% endblock %}

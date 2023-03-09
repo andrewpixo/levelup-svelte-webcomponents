@@ -1,10 +1,8 @@
-import Counter from "./lib/Counter.svelte";
+import PlayingCard from "./lib/PlayingCard.svelte";
 
-if (process.env.NODE_ENV !== "production") {
-    const app = new Counter({
+    const app = new PlayingCard({
         target: document.getElementById("app"),
     });
-}
 
 
 

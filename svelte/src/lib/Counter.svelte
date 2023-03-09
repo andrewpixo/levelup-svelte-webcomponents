@@ -2,6 +2,7 @@
 
 <script lang="ts">
     export let count = 0;
+    export let id = "1";
     let element: Element;
 
     const increment = () => {
@@ -17,7 +18,7 @@
     }
 </script>
 <div>
-    <button bind:this={element} on:click={increment}>
+    <button data-counter-value={count} bind:this={element} on:click={increment}>
         Increment
     </button>
     <p data-testId="counter-value">{count}</p>
